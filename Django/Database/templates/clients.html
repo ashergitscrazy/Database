@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<h1>Clients</h1>
+
+    {% for client in clients %}
+
+    <h2>{{ client.first }} {{ client.last }}</h2>
+<ul>
+    <li>Birthdate: {{ client.birthdate }}</li>
+    <li>Address: {{ client.address }}</li>
+    <li>Phone: {{ client.phone }}</li>
+    <li>Email: {{ client.email }}</li>
+    <li>Vaccinated: {{ client.vaccinated }}</li>
+    <li>Photo Preference: {{ client.photo_preference }}</li>
+    <li>Emergency Contact: {{ client.emergency_contact }}</li>
+</ul>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block content %}
+<h1>Courses</h1>
+{% for course in courses %}
+<h2>{{ course.name }}</h2>
+<h3>Days </h3>
+<ul>
+
+    {% if course.monday %}<li>Monday</li>{% endif %}
+    {% if course.tuesday %}<li>Tuesday</li>{% endif %}
+    {% if course.wednesday %}<li>Wednesday</li>{% endif %}
+    {% if course.thursday %}<li>Thursday</li>{% endif %}
+    {% if course.friday %}<li>Friday</li>{% endif %}
+    {% if course.saturday %}<li>Saturday</li>{% endif %}
+    {% if course.sunday %}<li>Sunday</li>{% endif %}
+
+</ul>
+<h3>Instructor: {{ course.instructor }}</h3>
+<br>
+<br>
+{% endfor %}
+{% endblock %}

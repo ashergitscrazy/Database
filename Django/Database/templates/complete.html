@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block content %}
+<h2>You're all set, have a wonderful day!</h2>
+
+<a class="btn btn-lg" href=" {% url 'Sign-ins' %}">Return to Sign In Page</a>
+
+<script>
+    setTimeout( function () {
+        window.location.replace("{% url 'Sign-ins' %}");
+    }, 10000 );
+</script>
+{% endblock %}
