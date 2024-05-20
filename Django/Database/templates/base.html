@@ -8,13 +8,22 @@
         Mabel Kay Sign-In
       {% endblock %}
     </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css" />
     <style>
+
       body {
-          background-image: url('https://wallpapers.com/images/hd/best-flowers-background-s090n7k81m7f4kdt.jpg');
-          background-repeat: no-repeat;
-          background-size: cover;
+        overflow-y: hidden;
+      }
+
+      input {
+        font-family: Merriweather Sans;
+        color: #D07567;
       }
 
       .btn.class-btn {
@@ -35,17 +44,46 @@
         background-color: #fff;
       }
 
+      .centered {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-40%, -25%);
+        color: white;
+      }
+
+      .sign-me-in {
+        position: absolute;
+        top: 105%;
+        left: 45%;
+        transform: translate(-40%, -25%);
+        color: white;
+      }
+
+      .start-over {
+        position: absolute;
+        top: 115%;
+        left: 45%;
+        transform: translate(-40%, -25%);
+        color: white;
+      }
+
       .search {
         width: 500px;
+        margin: 1rem;
         font-size: 3rem;
-        padding: 0.5rem 1rem;
+        padding: 1rem;
+        color: #D07567;
+        border-style: solid;
+        border-color: #D07567;
       }
 
       .class-list,
       .greeting,
       .sign-in-btn,
+      .welcome,
       .cancel-btn {
-        visibility: hidden;
+        display:none;
         opacity: 0;
         transition-property: opacity;
         transition-duration: 1.5s;
@@ -58,14 +96,19 @@
       .class-list.active,
       .greeting.active,
       .sign-in-btn.active,
+      .welcome.active,
       .cancel-btn.active {
-        visibility: visible;
+        display: block;
         opacity: 100%;
       }
+
     </style>
   </head>
   <body>
-    <div class="container">{% block content %} {% endblock %}</div>
+    <img style='max-height: 100%; max-width: 100%' src="https://static.vecteezy.com/system/resources/previews/026/047/974/large_2x/tropical-floral-background-with-blank-paper-copy-space-space-for-text-free-photo.jpg">
+    <div class="centered">
+      {% block content %} {% endblock %}
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" ></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>

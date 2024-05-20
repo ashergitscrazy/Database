@@ -1,32 +1,37 @@
 {% extends "base.html" %} {% block content %}
-<h1 style = "color:white; font-size: 1000%; font-family:maginy;">Sign-In</h1>
 
-
-    <p style = "color:white; font-size: 300%;">Please enter your name!</p>
+<div class="welcome">
+    <h1 style = "color:#E09789; font-size: 1500%; font-family: Lobster; text-align:center;">Hello</h1>
+    <p style = "color:#D07567; font-size: 300%; font-family: Merriweather Sans; text-align:center;">Please enter your name:</p>
     <input id="name" type="text" class="search" name="client" />
+</div>
 
-    <div class="greeting">
-        <p>Hi, <span id="first-name"></span>!</p>
-        <p>Which class are you taking today?</p>
-    </div>
+<div class="greeting">
+    <p style = "color:#D07567; font-size: 400%; font-family: Lobster; text-align:center;">Hi, <span id="first-name"></span>!</p>
+    <p style = "color:#D07567; font-size: 200%; font-family: Merriweather Sans; text-align:center;">Which class are you taking today?</p>
+</div>
 
-    {% for course in courses %}
-    <div class="class-list">
-        <button type="button" class="btn btn-default btn-lg class-btn" data-courseid="{{course.id}}">
-            <h2>{{course.name}}</h2>
-            <h3>{{course.instructor}}</h3>
-        </button>
-    </div>
-    {% endfor %}
+{% for course in courses %}
+<div class="class-list">
+    <button type="button" class="btn btn-default btn-lg class-btn" data-courseid="{{course.id}}">
+        <h2 style = "color:#6d3933; font-size: 200%; font-family: Merriweather Sans; text-align:center;">{{course.name}}</h2>
+        <h3 style = "color:#6d3933; font-size: 200%; font-family: Roboto; text-align:center;">{{course.instructor}}</h3>
+    </button>
+</div>
+{% endfor %}
 
 <form method="post" action="{% url 'Process Sign In' %}">
     {% csrf_token %}
     <input id="clientid" type="hidden" name="client" />
     <input id="courseid" type="hidden" name="course" />
-    <button type="submit" class="btn btn-primary btn-lg sign-in-btn">
-        Sign Me In!
-    </button>
-    <a class="btn btn-lg btn-link cancel-btn" href=" {% url 'Sign-ins' %}">Start Over</a>
+    <div class="sign-me-in">
+        <button type="submit" class="btn btn-primary btn-lg sign-in-btn">
+            Sign Me In!
+        </button>
+    </div>
+    <div class="start-over">
+        <a class="btn btn-lg btn-link cancel-btn" href=" {% url 'Sign-ins' %}">Start Over</a>
+    </div>
 </form>
 
 
@@ -42,7 +47,7 @@
                 "value": { id: {{client.id}}, first: "{{client.first}}", last: "{{client.last}}" }
              }, {% endfor %}
         ];
-
+        $( '.welcome' ).addClass( 'active' );
         $( ".search" ).autocomplete({
             source: names,
             select: function ( event, ui ) {
@@ -50,6 +55,7 @@
                 $( '.search' ).val( ui.item.label );
                 $( '#first-name' ).html( ui.item.value.first );
                 $( '.class-list, .greeting' ).addClass( 'active' );
+                $( '.welcome' ).removeClass( 'active' );
                 $( '#clientid' ).val( ui.item.value.id );
             },
             focus: function ( event, ui ) {

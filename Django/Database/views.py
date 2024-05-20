@@ -5,10 +5,6 @@ from datetime import timezone, date
 
 
 # Create your views here.
-def home(request):
-    return render(request, "home.html")
-
-
 def clients(request):
     clients = Client.objects.all()
     return render(request, "clients.html", {"clients": clients})

@@ -1,11 +1,10 @@
 {% extends "base.html" %} {% block content %}
-<h2>You're all set, have a wonderful day!</h2>
-
-<a class="btn btn-lg" href=" {% url 'Sign-ins' %}">Return to Sign In Page</a>
+<h2 style="color:#D07567; font-size: 600%; font-family: Lobster; text-align:center;">You're all set</h2>
+<h2 style="color:#D07567; font-size: 300%; font-family: Merriweather Sans; text-align:center;">Have a wonderful day!</h2>
 
 <script>
     setTimeout( function () {
         window.location.replace("{% url 'Sign-ins' %}");
-    }, 10000 );
+    }, 5000 );
 </script>
 {% endblock %}
