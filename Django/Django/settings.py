@@ -10,31 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+from django.core.management.utils import get_random_secret_key
 from pathlib import Path
+import os
+import sys
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import os
-from dotenv import load_dotenv
-env_path = load_dotenv(os.path.join(BASE_DIR, '.env'))
-load_dotenv(env_path)
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-7fc2lhwi_im%r_fjw$qsiisfld8qiy4d2rznw(r3o80-fkft)x'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-7fc2lhwi_im%r_fjw$qsiisfld8qiy4d2rznw(r3o80-fkft)x')
-
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['asherfred.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
-CSRF_TRUSTED_ORIGINS = ['https://asherfred.pythonanywhere.com']
 
 # Application definition
 
