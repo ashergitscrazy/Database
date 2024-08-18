@@ -7,13 +7,13 @@ from django.utils import timezone
 class Client(models.Model):
     first = models.CharField(max_length=200)
     last = models.CharField(max_length=200)
-    birthdate = models.DateField()
-    address = models.CharField(max_length=254)
-    phone = models.CharField(max_length=10)
-    email = models.EmailField(max_length=254)
+    birthdate = models.DateField(blank=True)
+    address = models.CharField(max_length=254, blank=True)
+    phone = models.CharField(max_length=12, blank=True)
+    email = models.EmailField(max_length=254, blank=True)
     vaccinated = models.BooleanField()
     photo_preference = models.BooleanField()
-    emergency_contact = models.CharField(max_length=10)
+    emergency_contact = models.CharField(max_length=254, blank=True)
 
     def __str__(self):
         return f"{self.first} {self.last}"
@@ -29,6 +29,8 @@ class Course(models.Model):
     saturday = models.BooleanField()
     sunday = models.BooleanField()
     instructor = models.CharField(max_length=200, blank=True)
+    resident_cost = models.IntegerField(blank=True)
+    non_resident_cost = models.IntegerField(blank=True)
 
     def __str__(self):
         return f"{self.name}"
