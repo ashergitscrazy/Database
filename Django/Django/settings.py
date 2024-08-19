@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from django.core.management.utils import get_random_secret_key
 from pathlib import Path
 import os
-import sys
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -73,23 +72,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Django.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+DATABASE_URL = os.getenv("DATABASE_URL", None)
+
 DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-
-            "NAME": "db",
-
-            "USER": "db",
-
-            "PASSWORD": "AVNS_DRhGSJL7Xvu_t9tdzek",
-
-            "HOST": "app-1826f9a9-20dd-4bcd-8af9-1b8cf3a26614-do-user-17537565-0.f.db.ondigitalocean.com",
-
-            "PORT": "25060",
-        }
-    }
+    "default": dj_database_url.config(
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+    # os.environ.get("DATABASE_URL")
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
