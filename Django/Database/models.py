@@ -29,8 +29,7 @@ class Course(models.Model):
     saturday = models.BooleanField()
     sunday = models.BooleanField()
     instructor = models.CharField(max_length=200, blank=True)
-    resident_cost = models.DecimalField(max_digits=4, decimal_places=0, default=0)
-    non_resident_cost = models.DecimalField(max_digits=4, decimal_places=0, default=0)
+
 
     def __str__(self):
         return f"{self.name}"
