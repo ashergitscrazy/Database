@@ -11,6 +11,7 @@ def clients(request):
 
 def courses(request):
     courses = Course.objects.all()
+    Course.objects.all().delete()
     return render(request, "courses.html", {"courses": courses})
 
 def signins(request):
