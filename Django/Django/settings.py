@@ -85,10 +85,14 @@ if DEVELOPMENT_MODE is True:
         }
     }
 elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+    """    
     if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
+        DATABASE_URL = "${db.DATABASE_URL}"
+    #    raise Exception("DATABASE_URL environment variable not defined")
+    """
     DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+        "default": dj_database_url.parse('postgresql://db:AVNS_DRhGSJL7Xvu_t9tdzek@app-1826f9a9-20dd-4bcd-8af9-1b8cf3a26614-do-user-17537565-0.f.db.ondigitalocean.com:25060/db?sslmode=require'),
+        # os.environ.get("DATABASE_URL")
     }
 
 # Password validation
