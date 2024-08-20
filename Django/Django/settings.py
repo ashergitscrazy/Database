@@ -72,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Django.wsgi.application'
 
-DATABASE_URL = os.getenv("DATABASE_URL", None)
 
 DATABASES = {
     "default": dj_database_url.config(
