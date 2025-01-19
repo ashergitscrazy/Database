@@ -17,8 +17,18 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css" />
     <style>
 
-      body {
-        overflow-y: hidden;
+      .bg-image {
+          max-width: 100%;
+          max-height: 100%;
+          bottom: 0;
+          left: 0;
+          margin: auto;
+          overflow: auto;
+          position: fixed;
+          right: 0;
+          top: 0;
+          -o-object-fit: contain;
+          object-fit: contain;
       }
 
       input {
@@ -105,7 +115,7 @@
     </style>
   </head>
   <body>
-    <img style='max-height: 100%; max-width: 100%' src="https://static.vecteezy.com/system/resources/previews/026/047/974/large_2x/tropical-floral-background-with-blank-paper-copy-space-space-for-text-free-photo.jpg">
+  <img src="https://static.vecteezy.com/system/resources/previews/001/370/776/non_2x/colorful-calm-e-meeting-background-free-vector.jpg" class="bg-image"/>
     <div class="centered">
       {% block content %} {% endblock %}
     </div>

@@ -15,22 +15,17 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import os
-from dotenv import load_dotenv
-env_path = load_dotenv(os.path.join(BASE_DIR, '.env'))
-load_dotenv(env_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-7fc2lhwi_im%r_fjw$qsiisfld8qiy4d2rznw(r3o80-fkft)x'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-7fc2lhwi_im%r_fjw$qsiisfld8qiy4d2rznw(r3o80-fkft)x')
+SECRET_KEY = 'django-insecure-7fc2lhwi_im%r_fjw$qsiisfld8qiy4d2rznw(r3o80-fkft)x'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = True
 
 ALLOWED_HOSTS = ['asherfred.pythonanywhere.com', '127.0.0.1']
 
@@ -135,13 +130,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import dj_database_url
-
-if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(
-        conn_max_age=500,
-        conn_health_checks=True,
-    )
 
 STORAGES = {
     # ...
