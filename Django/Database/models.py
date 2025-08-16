@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from datetime import datetime
 
 
 # Create your models here.
@@ -17,7 +18,12 @@ class Client(models.Model):
     email = models.EmailField(max_length=254)
     vaccinated = models.BooleanField()
     photo_preference = models.BooleanField()
-    emergency_contact = models.CharField(max_length=10)
+    emergency_contact1 = models.CharField(max_length=200, default="")
+    emergency_phone1 = models.CharField(max_length=10, default="")
+    emergency_contact2 = models.CharField(max_length=200, default="")
+    emergency_phone2 = models.CharField(max_length=10, default="")
+    emt_info = models.CharField(max_length=1000, default="")
+    is_resident = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.first} {self.last}"
@@ -33,8 +39,9 @@ class Course(models.Model):
     saturday = models.BooleanField()
     sunday = models.BooleanField()
     instructor = models.CharField(max_length=200, blank=True)
-    resident_cost = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
-    non_resident_cost = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
+    resident_cost = models.FloatField(null=True, blank=True, default=0.0)
+    non_resident_cost = models.FloatField(null=True, blank=True, default=0.0)
+    set_date = models.DateTimeField(null=True, blank=True, default=datetime.strptime("2001-01-01", "%Y-%m-%d").date())
 
     def __str__(self):
         return f"{self.name}"
@@ -48,3 +55,11 @@ class SignIn(models.Model):
     def __str__(self):
         return self.client.first
 
+
+class SheetImport(models.Model):
+    sheet_url = models.URLField()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+    def __str__(self):
+        return self.sheet_url
