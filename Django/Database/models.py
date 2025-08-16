@@ -7,13 +7,17 @@ from django.utils import timezone
 class Client(models.Model):
     first = models.CharField(max_length=200)
     last = models.CharField(max_length=200)
-    birthdate = models.DateField(blank=True)
-    address = models.CharField(max_length=254, blank=True)
-    phone = models.CharField(max_length=12, blank=True)
-    email = models.EmailField(max_length=254, blank=True)
+    birthdate = models.DateField()
+    street1 = models.CharField(max_length=254, default="")
+    street2 = models.CharField(max_length=254, default="")
+    city = models.CharField(max_length=254, default="")
+    state = models.CharField(max_length=2, default="")
+    zip = models.CharField(max_length=10, default="")
+    phone = models.CharField(max_length=10)
+    email = models.EmailField(max_length=254)
     vaccinated = models.BooleanField()
     photo_preference = models.BooleanField()
-    emergency_contact = models.CharField(max_length=254, blank=True)
+    emergency_contact = models.CharField(max_length=10)
 
     def __str__(self):
         return f"{self.first} {self.last}"
@@ -29,7 +33,8 @@ class Course(models.Model):
     saturday = models.BooleanField()
     sunday = models.BooleanField()
     instructor = models.CharField(max_length=200, blank=True)
-
+    resident_cost = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
+    non_resident_cost = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
 
     def __str__(self):
         return f"{self.name}"
