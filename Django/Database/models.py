@@ -41,7 +41,7 @@ class Course(models.Model):
     instructor = models.CharField(max_length=200, blank=True)
     resident_cost = models.FloatField(null=True, blank=True, default=0.0)
     non_resident_cost = models.FloatField(null=True, blank=True, default=0.0)
-    set_date = models.DateTimeField(null=True, blank=True, default=datetime.strptime("2001-01-01", "%Y-%m-%d").date())
+    set_date = models.DateTimeField(null=True, blank=True, default=datetime.strptime("2001-01-01", "%Y-%m-%d"))
 
     def __str__(self):
         return f"{self.name}"

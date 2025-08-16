@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from .models import Client, Course
 from .forms import SignInForm
-from datetime import timezone, date, datetime
+from datetime import datetime
 
 
 # Create your views here.
@@ -16,13 +16,12 @@ def courses(request):
 
 
 def signins(request):
-    today = datetime.today()
+    today = datetime.now()
     clients = Client.objects.all()
-    today = date.today()
     weekday = today.strftime("%A")
     weekday_lower = weekday.lower()
     courses1 = Course.objects.filter(**{weekday_lower: True})
-    courses2 = Course.objects.filter(set_date = datetime.today().date())
+    courses2 = Course.objects.filter(set_date = today.date())
     courses = list(set(courses1).union(courses2))
     return render(request, "signins.html", {"clients": clients, "courses": courses})
 
